@@ -1,0 +1,27 @@
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: tomato;
+}
+
+.logo {
+  padding: 25px;
+}
+
+.login-register a {
+  padding: 28px;
+}
+
+.topnav {
+  position: relative;
+}
+
+.demo {
+  position: absolute;
+  right: 0;
+  padding: 16.5px;
+  border-radius: 0 0 0 15px;
+  color: #fff;
+  background-color: #444;
+}
