@@ -12,18 +12,22 @@ class Calendar extends Component {
     this.state = {
       events: [
         {
-          title: 'Event 1',
+          title: 'Gym',
           start: '2018-08-02T10:00:00',
           end: '2018-08-02T12:00:00',
-          description: 'Something here'
+          description: 'Running, lifting, stretching'
         },
         {
-          title: 'Event 2',
+          title: 'Meeting with team-members',
           start: '2018-08-02T14:00:00',
           end: '2018-08-02T15:00:00',
-          description: 'Something here'
+          description: 'Something here.'
         }
-      ]
+      ],
+      mouseCoord: {
+        x: null,
+        y: null
+      }
     }
   }
   componentDidMount() {
@@ -38,8 +42,25 @@ class Calendar extends Component {
       showNonCurrentDates: false,
       // dayClick: function(date) {
       //   console.log(date.format());
-      // }
-      events: this.state.events
+      // },
+      events: this.state.events,
+      // eventRender: function(event, element) {
+      //   element.find('.fc-title').append('<br/>' + event.description);
+      // },
+      eventMouseover: function(data, event, view) {
+        $('<div/>', {
+          class: 'description-popup',
+          text: `Event: ${data.title}`
+        }).appendTo(this);
+        view.el.find('.description-popup').append('<br/>' + data.description)
+        $('.description-popup').css({
+          'left': event.pageX,
+          'top': event.pageY
+        })
+      },
+      eventMouseout: function(data, event, view) {
+        view.el.find('.description-popup').remove();
+      }
     })
   }
 
